@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Web3 from 'web3';
-import { Button, Container, Row, Col, Form, Alert, Spinner } from 'react-bootstrap';
+import { Button, Container, Row, Col, Form, Alert } from 'react-bootstrap';
 import ContractABI from './resources/Test.json'
 
 function App() {
@@ -57,44 +57,46 @@ function App() {
 	}
 
 	async function withdraw() {
-		document.getElementById("withdrawBtn").disabled = true;
+		let btn = document.getElementById("withdrawBtn");
+		btn.disabled = true;
 		let amount = document.getElementById("withdraw").value;
 		contract.methods.withdraw(web3.utils.toWei(amount))
 			.send({ from: account })
 			.on('transactionHash', function (txhash) {
-				document.getElementById("spinner").hidden = false;
+				btn.innerText = "Pending...";
 				showInfo("Transaction " + txhash + " submitted");
 			})
 			.on('confirmation', function (confirmationNumber, receipt) {
-				document.getElementById("withdrawBtn").disabled = false;
-				document.getElementById("spinner").hidden = true;
+				btn.disabled = false;
+				btn.innerText = "Withdraw";
 				showSuccess("Transaction " + receipt.transactionHash + " confirmed");
 			})
 			.on('error', function (error, receipt) {
-				document.getElementById("withdrawBtn").disabled = false;
-				document.getElementById("spinner").hidden = true;
+				btn.disabled = false;
+				btn.innerText = "Withdraw";
 				showError("Transaction failed!");
 				console.log(error);
 			});
 	}
 
 	async function deposit() {
-		document.getElementById("depositBtn").disabled = true;
+		let btn = document.getElementById("depositBtn");
+		btn.disabled = true;
 		let amount = document.getElementById("deposit").value;
 		contract.methods.deposit()
 			.send({ from: account, value: web3.utils.toWei(amount) })
 			.on('transactionHash', function (txhash) {
-				document.getElementById("spinner").hidden = false;
+				btn.innerText = "Pending...";
 				showInfo("Transaction " + txhash + " submitted");
 			})
 			.on('confirmation', function (confirmationNumber, receipt) {
-				document.getElementById("depositBtn").disabled = false;
-				document.getElementById("spinner").hidden = true;
+				btn.disabled = false;
+				btn.innerText = "Deposit";
 				showSuccess("Transaction " + receipt.transactionHash + " confirmed");
 			})
 			.on('error', function (error, receipt) {
-				document.getElementById("depositBtn").disabled = false;
-				document.getElementById("spinner").hidden = true;
+				btn.disabled = false;
+				btn.innerText = "Deposit";
 				showError("Transaction failed!");
 				console.log(error);
 			});
@@ -110,24 +112,25 @@ function App() {
 			</Row>
 			<Row className='mb-2'>
 				<Col>Total Value Locked:</Col>
-				<Col>{tvl}</Col>
+				<Col md={10}><strong>{tvl} Ether</strong></Col>
 			</Row>
 			<Row className='mb-2'>
 				<Col>My Deposit:</Col>
-				<Col>{balance}</Col>
+				<Col md={10}><strong>{balance} Ether</strong></Col>
 			</Row>
 			<Row className='mb-2'>
 				<Col>Amount:</Col>
-				<Col><Form.Control id="withdraw" type="text" placeholder="Amount to withdraw" /></Col>
-				<Col><Button id="withdrawBtn" onClick={() => withdraw()}>Withdraw</Button></Col>
+				<Col md={8}><Form.Control id="withdraw" type="text" placeholder="Amount to withdraw" /></Col>
+				<Col className='d-grid'><Button id="withdrawBtn" onClick={() => withdraw()}>Withdraw</Button>
+				</Col>
 			</Row>
 			<Row className='mb-2'>
 				<Col>Amount:</Col>
-				<Col><Form.Control id="deposit" type="text" placeholder="Amount to deposit" /></Col>
-				<Col><Button id="depositBtn" onClick={() => deposit()}>Deposit</Button></Col>
+				<Col md={8}><Form.Control id="deposit" type="text" placeholder="Amount to deposit" /></Col>
+				<Col className='d-grid'><Button id="depositBtn" onClick={() => deposit()}>Deposit</Button></Col>
 			</Row>
 			<Row className='mb-2' className="mb-2 justify-content-center">
-				<Spinner id="spinner" animation="border" hidden/>
+				
 			</Row>
 		</Container>
 	);
