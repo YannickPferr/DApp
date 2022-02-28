@@ -33,12 +33,22 @@ function App() {
 	});
 
 	async function connectWallet() {
-		console.log("Connect");
 		const accounts = await web3.eth.requestAccounts();
 		if(accounts)
 			setAccount(accounts[0]);
 		else
 			showInfo("Please install Metamask first!")
+	}
+
+	function refreshContractState() {
+		getTVL();
+		getBalance();
+	}
+
+	function resetMessages(){
+		showError();
+		showInfo();
+		showSuccess();
 	}
 
 	async function getTVL() {
@@ -51,12 +61,8 @@ function App() {
 		setBalance(web3.utils.fromWei(balance));
 	}
 
-	function refreshContractState() {
-		getTVL();
-		getBalance();
-	}
-
 	async function withdraw() {
+		resetMessages();
 		let btn = document.getElementById("withdrawBtn");
 		btn.disabled = true;
 		let amount = document.getElementById("withdraw").value;
@@ -66,10 +72,11 @@ function App() {
 				btn.innerText = "Pending...";
 				showInfo("Transaction " + txhash + " submitted");
 			})
-			.on('confirmation', function (confirmationNumber, receipt) {
+			.on('receipt', function (receipt) {
 				btn.disabled = false;
 				btn.innerText = "Withdraw";
-				showSuccess("Transaction " + receipt.transactionHash + " confirmed");
+				if(receipt.status)
+					showSuccess("Transaction " + receipt.transactionHash + " confirmed");
 			})
 			.on('error', function (error, receipt) {
 				btn.disabled = false;
@@ -80,6 +87,7 @@ function App() {
 	}
 
 	async function deposit() {
+		resetMessages();
 		let btn = document.getElementById("depositBtn");
 		btn.disabled = true;
 		let amount = document.getElementById("deposit").value;
@@ -89,10 +97,11 @@ function App() {
 				btn.innerText = "Pending...";
 				showInfo("Transaction " + txhash + " submitted");
 			})
-			.on('confirmation', function (confirmationNumber, receipt) {
+			.on('receipt', function (receipt) {
 				btn.disabled = false;
 				btn.innerText = "Deposit";
-				showSuccess("Transaction " + receipt.transactionHash + " confirmed");
+				if(receipt.status)
+					showSuccess("Transaction " + receipt.transactionHash + " confirmed");
 			})
 			.on('error', function (error, receipt) {
 				btn.disabled = false;
@@ -128,9 +137,6 @@ function App() {
 				<Col>Amount:</Col>
 				<Col md={8}><Form.Control id="deposit" type="text" placeholder="Amount to deposit" /></Col>
 				<Col className='d-grid'><Button id="depositBtn" onClick={() => deposit()}>Deposit</Button></Col>
-			</Row>
-			<Row className='mb-2' className="mb-2 justify-content-center">
-				
 			</Row>
 		</Container>
 	);
