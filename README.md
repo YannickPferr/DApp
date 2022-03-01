@@ -2,7 +2,7 @@
 Simple Smart Contract hosted on the Ethereum Ropsten Testnet that provides deposit and withdraw functionality. 
 To use the Smart Contract, the user simply connects his MetaMask wallet to the frontend.
 
-![Frontend Screenshot](frontend.png?raw=true "Title")
+![Frontend Screenshot](frontend.png)
 
 ## How to use
 1. Make sure you have the [MetMask Chrome Extension](https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn) installed 
