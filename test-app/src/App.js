@@ -192,7 +192,7 @@ function App() {
 			{infoMessage && <Alert variant="primary" onClose={() => showInfo()} dismissible>{infoMessage}</Alert>}
 			{successMessage && <Alert variant="success" onClose={() => showSuccess()} dismissible>{successMessage}</Alert>}
 			<Row className='mb-2'>
-				<Button onClick={() => connectWallet()}>Wallet address: {account ? account : "Connect MetaMask"}</Button>
+				<Button onClick={() => connectWallet()}>{account ? "Wallet address: " + account : "Connect MetaMask"}</Button>
 			</Row>
 			<Row className='mb-2'>
 				<Button onClick={() => addToken()}>Add token to MetaMask</Button>
