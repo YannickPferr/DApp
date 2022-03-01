@@ -1,6 +1,6 @@
 # DApp
-Simple Smart Contract hosted on the Ethereum Ropsten Testnet that provides deposit and withdraw functionality. 
-To use the Smart Contract, the user simply connects his MetaMask wallet to the frontend.
+Simple Smart Contract hosted on the Ethereum Ropsten Testnet that can swap some ETH for my custom YPC token.
+To use the Smart Contract, the user simply connects his MetaMask wallet to the frontend written in React.
 
 <img width="1512" alt="image" src="https://user-images.githubusercontent.com/37211050/156212545-e925d688-3502-49ac-934b-ba4913ecc1e3.png">
 
