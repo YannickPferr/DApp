@@ -1,5 +1,6 @@
-const Test = artifacts.require("Test");
+const YPCSwap = artifacts.require("YPCSwap");
+const YannickPferrCoin = artifacts.require("YannickPferrCoin");
 
 module.exports = function (deployer) {
-  deployer.deploy(Test);
+  deployer.deploy(YPCSwap);
 };
