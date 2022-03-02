@@ -10,7 +10,7 @@ To use the Smart Contract, the user simply connects his MetaMask wallet to the f
 2. Go to MetaMask settings and make sure Testnets are not hidden
 3. Switch to the Ropsten Testnet
 4. Go to [MetaMask Ether Faucet](https://faucet.metamask.io/), connect your wallet and request some test ether 
-5. Go to [the frontend](https://smart-contract-test.netlify.app/) and swap some ETH for YPC
+5. Go to [the frontend](https://ypswap.netlify.app/) and swap some ETH for YPC
 6. To add the YPC token to your MetaMask, you can click on the button at the top and approve in MetaMask
 
 
