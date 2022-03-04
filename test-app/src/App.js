@@ -143,10 +143,10 @@ function App() {
 			ypc.methods.getTokenAddress().call().then(tokenAddress => {
 				console.log(ypc._address)
 				const contract = new web3.eth.Contract(YannickPferrCoin, tokenAddress);
-				contract.methods.approve(ypc._address, (fromValue * 1e18).toString())
+				contract.methods.approve(ypc._address, web3.utils.toWei(fromValue))
 					.send({ from: account })
 					.on('receipt', function (receipt) {
-						ypc.methods.ypcToEth((fromValue * 1e18).toString())
+						ypc.methods.ypcToEth(web3.utils.toWei(fromValue))
 							.send({ from: account })
 							.on('transactionHash', function (txhash) {
 								btn.innerText = "Pending...";
