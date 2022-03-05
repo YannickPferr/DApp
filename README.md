@@ -1,4 +1,4 @@
-# DApp
+# YPSwap
 Simple Smart Contract hosted on the Ethereum Ropsten Testnet that can swap some ETH for my custom YPC token.
 To use the Smart Contract, the user simply connects his MetaMask wallet to the frontend written in React.
 
