@@ -4,6 +4,7 @@ To use the Smart Contract, the user simply connects his MetaMask wallet to the f
 
 <img width="1512" alt="image" src="https://user-images.githubusercontent.com/37211050/156212545-e925d688-3502-49ac-934b-ba4913ecc1e3.png">
 
+Try it [here](https://ypswap.netlify.app/)!
 
 ## How to use
 1. Make sure you have the [MetMask Chrome Extension](https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn) installed 
